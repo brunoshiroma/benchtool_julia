@@ -1,0 +1,4 @@
+name = "benchtool_julia"
+uuid = "70d75505-2997-478d-99c6-3cd6970b8943"
+authors = ["Bruno Shiroma <brunoshiroma@gmail.com>"]
+version = "0.1.0"

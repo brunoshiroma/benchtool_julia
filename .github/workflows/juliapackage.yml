@@ -1,0 +1,21 @@
+name: Julia package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 2
+      matrix:
+        os: [ windows-2019, ubuntu-18.04]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Docker run Linux
+      if: matrix.os == 'ubuntu-18.04'
+      run: docker build .
+    - name: Docker run Windows
+      if: matrix.os == 'windows-2019'
+      run: docker build -f DockerfileWindows .
