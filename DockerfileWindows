@@ -5,4 +5,4 @@ ADD Project.toml /app/
 
 WORKDIR /app
 
-RUN julia src/main.jl 2 99999
+RUN julia src/main.jl 2 100
