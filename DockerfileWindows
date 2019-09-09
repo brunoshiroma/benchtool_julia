@@ -1,4 +1,4 @@
-FROM julia:1.2.0-windowsservercore-ltsc2016
+FROM julia:1.2.0-windowsservercore-1803
 
 ADD src /app/src
 ADD Project.toml /app/
