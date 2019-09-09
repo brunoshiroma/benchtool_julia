@@ -9,7 +9,7 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        os: [ windows-2019, ubuntu-18.04]
+        os: [ windows-2016, ubuntu-18.04]
 
     steps:
     - uses: actions/checkout@v1
@@ -17,5 +17,5 @@ jobs:
       if: matrix.os == 'ubuntu-18.04'
       run: docker build .
     - name: Docker run Windows
-      if: matrix.os == 'windows-2019'
+      if: matrix.os == 'windows-2016'
       run: docker build -f DockerfileWindows .
