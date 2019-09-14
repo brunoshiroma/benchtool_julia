@@ -19,11 +19,8 @@ jobs:
     - name: Docker run Windows
       if: matrix.os == 'windows-2016'
       run: docker build -f DockerfileWindows .
-    - name: create zip
-      if: matrix.os == 'ubuntu-18.04'
-      run : zip -9 -r benchtool_julia.zip . -x *.git*
     - uses: actions/upload-artifact@master
       if: matrix.os == 'ubuntu-18.04'
       with:
         name: benchtool_julia_zip
-        path: benchtool_julia.zip
+        path: .
