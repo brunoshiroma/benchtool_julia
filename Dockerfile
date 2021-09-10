@@ -1,5 +1,4 @@
-FROM julia:1.4.0-buster
-
+FROM julia:alpine
 ADD src /app/src
 ADD Project.toml /app/
 
