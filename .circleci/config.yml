@@ -1,0 +1,35 @@
+version: 2.1
+
+jobs:
+  build-arm:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - run:  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - run: docker build -t brunoshiroma/benchtool_julia:arm64-latest .
+      - run: docker push brunoshiroma/benchtool_julia:arm64-latest
+
+  build-amd64:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: medium
+    steps:
+      - run:  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - run: docker build -t brunoshiroma/benchtool_julia:amd64-latest .
+      - run: docker push brunoshiroma/benchtool_julia:amd64-latest
+
+  push-multi-arch-meta:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: small
+    steps:
+      - run:  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - run: docker manifest create brunoshiroma/benchtool_julia:latest brunoshiroma/benchtool_julia:amd64-latest brunoshiroma/benchtool_julia:arm64-latest
+      - run: docker manifest push brunoshiroma/benchtool_julia:latest
+
+workflows:
+  build:
+    jobs:
+      - build-medium
+      - build-large
