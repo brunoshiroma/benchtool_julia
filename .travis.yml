@@ -1,5 +1,10 @@
 language: minimal
+os: linux
+dist: focal
 
+branches:
+  only:
+    - master
 
 arch: 
   - amd64
@@ -8,11 +13,7 @@ arch:
 services:
   - docker
 
-jobs:
-  include:
-    - if: branch = master
-      os: linux
-      script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t brunoshiroma/benchtool_julia:$TRAVIS_CPU_ARCH .
-        - docker push brunoshiroma/benchtool_julia:$TRAVIS_CPU_ARCH
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t brunoshiroma/benchtool_julia:$TRAVIS_CPU_ARCH .
+  - docker push brunoshiroma/benchtool_julia:$TRAVIS_CPU_ARCH
