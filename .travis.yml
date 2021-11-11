@@ -11,4 +11,4 @@ jobs:
         - arm64
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build --platform linux/arm/v7 -t brunoshiroma/benchtool_julia:$TRAVIS_CPU_ARCH --push .
+        - docker build -t brunoshiroma/benchtool_julia:$TRAVIS_CPU_ARCH --push .
