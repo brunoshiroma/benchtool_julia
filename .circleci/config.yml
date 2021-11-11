@@ -31,12 +31,12 @@ jobs:
 workflows:
   build:
     jobs:
-      - build-arm
-          context:
-            - benchtool
-      - build-amd64
-          context:
-            - benchtool
-      - push-multi-arch-meta
-          context:
-            - benchtool
+      - build-arm:
+          context: benchtool
+      - build-amd64:
+          context: benchtool
+      - push-multi-arch-meta:
+          context: benchtool
+          requires:
+            - build-arm
+            - build-amd64
