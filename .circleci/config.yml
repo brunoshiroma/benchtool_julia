@@ -6,6 +6,7 @@ jobs:
       image: ubuntu-2004:202101-01
     resource_class: arm.medium
     steps:
+      - checkout
       - run:  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - run: docker build -t brunoshiroma/benchtool_julia:arm64-latest .
       - run: docker push brunoshiroma/benchtool_julia:arm64-latest
@@ -15,6 +16,7 @@ jobs:
       image: ubuntu-2004:202101-01
     resource_class: medium
     steps:
+      - checkout
       - run:  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - run: docker build -t brunoshiroma/benchtool_julia:amd64-latest .
       - run: docker push brunoshiroma/benchtool_julia:amd64-latest
