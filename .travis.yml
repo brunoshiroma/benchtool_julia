@@ -1,12 +1,17 @@
 language: minimal
 
+
+arch: 
+  - amd64
+  - arm64
+
+services:
+  - docker
+
 jobs:
   include:
     - if: branch = master
       os: linux
-      arch: 
-        - amd64
-        - arm64
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t brunoshiroma/benchtool_julia:$TRAVIS_CPU_ARCH .
