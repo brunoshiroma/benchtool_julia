@@ -31,5 +31,6 @@ jobs:
 workflows:
   build:
     jobs:
-      - build-medium
-      - build-large
+      - build-arm
+      - build-amd64
+      - push-multi-arch-meta
