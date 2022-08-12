@@ -1,4 +1,4 @@
-FROM julia:buster
+FROM julia:alpine
 ADD src /app/src
 ADD Project.toml /app/
 
